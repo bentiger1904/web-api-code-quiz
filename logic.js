@@ -91,7 +91,10 @@ function startQuiz() {
     if (initials === "" || initials.length > 3) {
       alert("Please enter no more than 3 characters and try again.");
     } else {
-      // Save the score and initials (you need to implement this part)
+      // Save the score and initials
+
+
+      
       // After saving, redirect to highscores.html
       window.location.href = "highscores.html";
     }

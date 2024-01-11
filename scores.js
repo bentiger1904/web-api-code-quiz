@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Clear Highscores button click event
     document.getElementById("clear").addEventListener("click", function () {
-      // Clear highscores logic (you need to implement this part)
+      
+        // Clear highscores logic
+
+
     });
   
     // Display Highscores
@@ -10,7 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Display Highscores function
     function displayHighscores() {
       var highscoresList = document.getElementById("highscores");
-      // Retrieve and display highscores logic (you need to implement this part)
-      // Example: Iterate through saved scores and append to highscoresList
+      
+      // Retrieve and display highscores logic 
+
+
     }
   });
