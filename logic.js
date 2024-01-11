@@ -23,4 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("submit").addEventListener("click", function () {
       submitScore();
     });
+    
+// Start Quiz function
+function startQuiz() {
+    document.getElementById("start-screen").classList.add("hide");
+    document.getElementById("question").classList.remove("hide");
+
+    // Start the timer
+    timer = setInterval(function () {
+      timeLeft--;
+      timeEl.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        endQuiz();
+      }
+    }, 1000);
   
