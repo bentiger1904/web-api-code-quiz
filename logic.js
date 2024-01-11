@@ -67,3 +67,33 @@ function startQuiz() {
       feedbackEl.textContent = "Wrong!";
       timeLeft -= 10;
     }
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < questions.length) {
+      displayQuestion();
+    } else {
+      endQuiz();
+    }
+  }
+
+  // End Quiz function
+  function endQuiz() {
+    clearInterval(timer);
+    document.getElementById("question").classList.add("hide");
+    document.getElementById("end-screen").classList.remove("hide");
+    document.getElementById("final-score").textContent = correctAnswers;
+  }
+
+  // Submit Score function
+  function submitScore() {
+    var initials = document.getElementById("initials").value.trim();
+
+    if (initials === "" || initials.length > 3) {
+      alert("Please enter no more than 3 characters and try again.");
+    } else {
+      // Save the score and initials (you need to implement this part)
+      // After saving, redirect to highscores.html
+      window.location.href = "highscores.html";
+    }
+  }
+});
