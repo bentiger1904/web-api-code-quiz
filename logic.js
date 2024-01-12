@@ -7,7 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Quiz variables
     var currentQuestionIndex = 0;
     var correctAnswers = 0;
+    var highScores=[]
     var feedbackEl = document.getElementById("feedback");
+
+    const correctSound= new Audio ("assets/sfx/correct.wav")
+    const wrongSound= new Audio ("assets/sfx/incorrect.wav")
   
     // Start button click event
     document.getElementById("start").addEventListener("click", startQuiz);
@@ -60,14 +64,28 @@ function startQuiz() {
   function checkAnswer(userChoice) {
     var currentQuestion = questions[currentQuestionIndex];
 
-    if (userChoice === currentQuestion.answer) {
-      correctAnswers += 5;
+    if (userChoice === currentQuestion.answer) {  
+    feedbackEl.classList.remove("hide")
       feedbackEl.textContent = "Correct!";
+      correctSound.play()
+      correctAnswers += 5;
+      currentQuestionIndex++;
+      setTimeout(()=>{
+        feedbackEl.classList.add("hide")
+      },1000)
+   
     } else {
+      feedbackEl.classList.remove("hide")
       feedbackEl.textContent = "Wrong!";
+      wrongSound.play()
       timeLeft -= 10;
+      currentQuestionIndex++;
+      setTimeout(()=>{
+        feedbackEl.classList.add("hide")
+      },1000)
+   
     }
-    currentQuestionIndex++;
+   
 
     if (currentQuestionIndex < questions.length) {
       displayQuestion();
@@ -87,11 +105,19 @@ function startQuiz() {
   // Submit Score function
   function submitScore() {
     var initials = document.getElementById("initials").value.trim();
-
+    highScores=JSON.parse(localStorage.getItem("highscores")) ||[]
     if (initials === "" || initials.length > 3) {
       alert("Please enter no more than 3 characters and try again.");
     } else {
       // Save the score and initials
+      var user ={
+        initials: initials,
+        score:correctAnswers
+
+      }
+      highScores.push(user)
+      localStorage.setItem("highscores", JSON.stringify(highScores))
+
 
 
       
